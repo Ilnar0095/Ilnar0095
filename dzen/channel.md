@@ -2,9 +2,16 @@
 type: channel-passport
 status: ready
 updated: 2026-11-19
+url: https://dzen.ru/cookrate_neobychnaya_kuhnya
 ---
 
 # Паспорт канала
+
+## Адрес
+
+`dzen.ru/cookrate_neobychnaya_kuhnya` — адрес в реестре Дзена, описание и аватар проверены
+в эфире; раздел «Позиционирование» ниже — это рабочая формулировка бренда, сверить
+с реальным текстом описания в профиле (`../intake.md`, пункт 1).
 
 ## Название
 
