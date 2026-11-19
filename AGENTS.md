@@ -47,12 +47,26 @@
 
 ## Инструменты
 
+## Telegram-бот
+
+`bot/` — помощник канала для Telegram: пишет статьи/посты/раскадровки, собирает
+обложки, тизеры и озвучку, кладёт черновики в `dzen/next/`. Ключевое свойство:
+он **импортирует** `dzen/tools/cookrate.py` и читает `dzen/channel.md` и
+`dzen/angela.md`, а не хранит копию правил. Поэтому новые требования к текстам
+или кадрам пишите в markdown — бот подхватит сам; в `bot/` правьте только код.
+
+Запуск и конфигурация: `bot/README.md`. Секреты — только в `bot/.env` (в git не
+кладутся). Бот не делает git commit/push и не публикует в Дзен.
+
+## Команды терминала
+
 ```bash
 python3 dzen/tools/cookrate.py check [файл|папка]   # линт по чек-листу, exit code ≠ 0 при ошибках
 python3 dzen/tools/cookrate.py new 007 grusha-v-teste --rubric article --date 2026-11-30
 python3 dzen/tools/cookrate.py plan [--week 2]      # что выходит по контент-плану
 python3 dzen/tools/cookrate.py stats                # длина, время чтения, статусы архива
 python3 dzen/tools/cookrate.py next                 # готовые к публикации тексты
+python3 -m bot --selftest                     # офлайн-проверка сборки бота
 ```
 
 Требований к окружению нет: python3 из stdlib, без зависимостей.

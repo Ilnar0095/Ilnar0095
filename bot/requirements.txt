@@ -1,0 +1,9 @@
+# Ядро бота. Ставится одной командой:  pip install -r bot/requirements.txt
+aiogram>=3.30,<4
+aiohttp>=3.9
+
+# Озвучка по-русски без ключей (если недоступна — бот сам предложит gTTS)
+edge-tts>=6.1
+
+# Опционально: генерация картинок через Stability AI вместо OpenAI/Replicate
+# stability-sdk>=0.71
