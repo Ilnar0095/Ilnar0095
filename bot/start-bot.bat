@@ -5,9 +5,20 @@ cd /d "%~dp0.."
 where py >nul 2>nul && (set PY=py) || (set PY=python)
 %PY% -V >nul 2>nul
 if errorlevel 1 (
-  echo Python ne naiden. Ustanovite ego s python.org/downloads
-  echo i na pervem ekrane POSTAVTE GALOCHKU "Add python.exe to PATH".
-  echo Posle etogo zakroyte eto okno i snova 2 raza klinknite po etomu faylu.
+  echo.
+  echo ============ NADOBEN PYTHON ============
+  echo Variant 1 (prostoy, otkroyte Microsoft Store na kompyutere):
+  echo    Microsoft Store - "App Installer" ili "Python 3.12" - knopka "Poluchit"
+  echo    Tam PATH nastivaetsya sam, nikakie galochki ne nuzhny.
+  echo.
+  echo Variant 2 (s sayta):
+  echo    https://www.python.org/downloads/  - na pervem ekrane
+  echo    POSTAVTE GALOCHKU "Add python.exe to PATH", do otherwise Python ne budet viden.
+  echo.
+  echo Posle ustanovki zakroyte eto okno i snova 2 raza klinknite po start-bot.bat
+  echo (pri khelane mozhno proverit: Win+R - cmd - Enter - napechatat  python --version).
+  echo =========================================
+  echo.
   pause
   exit /b 1
 )
