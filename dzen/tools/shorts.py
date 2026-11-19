@@ -488,13 +488,13 @@ def cmd_plan(args) -> int:
         media = p.media.name if p.media else "—"
         print(f"{p.index:<5} {p.start:>6.2f} {p.length:>6.2f}  {media:<24} {p.strip()[:44]}")
     print(f"\nдоступных файлов в {src or 'не задано'}: {len(pool)}")
-    if src:
-        if not pool:
-            print(f"  ⚠ в {src} нет ни одного jpg/png/mp4 — положите кадры и повторите")
-        for m in missing[:1] if not pool else missing:
-            print(f"  ⚠ {m}")
-    else:
+    if not src:
         print("  → --src не задан: файлы подберутся по порядку при render")
+    elif not pool:
+        print(f"  ⚠ в {src} нет ни одного jpg/png/mp4 — положите кадры и повторите")
+    else:
+        for m in missing:
+            print(f"  ⚠ {m}")
     if args.retime:
         plans, ok = asyncio.run(retime_by_voice(sc, WORK, args.voice))
         WORK.mkdir(parents=True, exist_ok=True)
