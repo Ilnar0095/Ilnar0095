@@ -1,0 +1,25 @@
+# Запуск из корня репозитория:
+#   docker compose -f bot/docker-compose.yml up -d --build
+#   docker compose -f bot/docker-compose.yml logs -f
+#
+# ./dzen примонтирован целиком: черновик, сохранённый ботом, появляется у вас в
+# рабочей копии и оттуда уезжает в git обычным коммитом.
+
+services:
+  cookrate-bot:
+    build:
+      context: ..
+      dockerfile: bot/Dockerfile
+    image: cookrate-bot:latest
+    env_file:
+      - ../bot/.env
+    environment:
+      COOKRATE_REPO: /app
+    volumes:
+      - ../dzen:/app/dzen
+      - bot-tmp:/app/bot/.tmp
+    restart: unless-stopped
+    init: true
+
+volumes:
+  bot-tmp:
