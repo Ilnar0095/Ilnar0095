@@ -33,7 +33,12 @@
 ## Три шага до запуска
 
 ```bash
-cp bot/.env.example bot/.env      # 1. вписать токен и admin id
+python bot/install.py             # 0. проверит Python, создаст .venv, поставит зависимости,
+                                  #    спросит токен, сам создаст bot/.env и прогонит самотест
+```
+
+```bash
+cp bot/.env.example bot/.env      # 1. вписать токен и admin id (если ставили руками)
 bash bot/run.sh                   # 2. venv + selftest + запуск
 # или в Docker (там уже есть ffmpeg и шрифт с кириллицей):
 docker compose -f bot/docker-compose.yml up -d --build   # 3.
@@ -41,6 +46,10 @@ docker compose -f bot/docker-compose.yml up -d --build   # 3.
 
 Токен: [@BotFather](https://t.me/BotFather) → `/newbot` → скопировать.
 Свой id: запустить бота, написать `/id`.
+
+Флаги установщика: `--check` (только проверка), `--token … --admin …` (без вопросов),
+`--docker` (подсказать команды Docker), `--no-venv`, `--force-env`.
+Пошаговый разбор для тех, кто ставит впервые, — в `dzen/SETUP-telegram.md`.
 
 ## Что работает без ключей, а что нет
 
