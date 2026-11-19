@@ -61,19 +61,19 @@ id - Мой chat id
 
 ## Шаг 2. Достать код
 
-Код лежит в этом репозитории. ⚠️ Пока PR №1 не влит в `main`, бот живёт **в ветке**:
-`arena/ff89cd13-ilnar0095`.
+Код лежит в `main` этого репозитория — ветку выбирать не нужно (PR №1 влит).
 
 **Вариант через git** (рекомендую):
 
 ```bash
-git clone -b arena/ff89cd13-ilnar0095 https://github.com/Ilnar0095/Ilnar0095.git cookrate
+git clone https://github.com/Ilnar0095/Ilnar0095.git cookrate
 cd cookrate
 ```
 
-После слияния PR будет достаточно `git clone https://github.com/Ilnar0095/Ilnar0095.git cookrate`.
+**Без git:** страница репозитория → **Code → Download ZIP** → распаковать в короткий путь
+без кириллицы и пробелов, например `C:\cookrate`.
 
-**Без git:** кнопка **Code → Download ZIP** на странице нужной ветки, распаковать.
+Обновить до свежей версии потом: `git pull`.
 
 ---
 
