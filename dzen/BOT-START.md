@@ -53,9 +53,12 @@
 
 ## Шаг 2. Скачать папку с «мозгами»
 
-* Стоит `git`: `git clone -b arena/ff89cd13-ilnar0095 https://github.com/Ilnar0095/Ilnar0095.git cookrate`
-* Без git: на странице репозитория **Code → Download ZIP** (сначала переключите ветку
-  на `arena/ff89cd13-ilnar0095`), распакуйте в `C:\\cookrate`.
+Всё уже в основном коде репозитория (ветку выбирать не нужно):
+
+* Без git (проще всего): откройте `https://github.com/Ilnar0095/Ilnar0095` → зелёная
+  кнопка **Code → Download ZIP** → распакуйте и переименуйте папку коротко, например
+  `C:\cookrate` (без русских букв и пробелов в пути).
+* Стоит `git`: `git clone https://github.com/Ilnar0095/Ilnar0095.git cookrate`
 
 ## Шаг 3. Поставить Python (один раз)
 
