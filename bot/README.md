@@ -30,6 +30,11 @@
 Инлайн-кнопки под каждым текстом: переписать, проверить, сохранить в репозиторий,
 обложка, кадры, тизер, озвучка.
 
+## Запуск
+
+Впервые? Читайте `dzen/BOT-START.md` — там 5 шагов и двойной клик `bot/start-bot.bat`,
+терминал почти не нужен. Ниже — вариант для тех, кто предпочитает команды.
+
 ## Три шага до запуска
 
 ```bash
@@ -49,7 +54,10 @@ docker compose -f bot/docker-compose.yml up -d --build   # 3.
 
 Флаги установщика: `--check` (только проверка), `--token … --admin …` (без вопросов),
 `--docker` (подсказать команды Docker), `--no-venv`, `--force-env`.
-Пошаговый разбор для тех, кто ставит впервые, — в `dzen/SETUP-telegram.md`.
+Ещё: `python -m bot --check-token` — проверить токен у BotFather, и
+`python -m bot --selftest` — офлайн-проверка сборки.
+Двойной клик вместо консоли: `bot/start-bot.bat` (Windows), `bot/start-bot.command` (macOS),
+`bot/start-bot.sh` (Linux). Полный разбор с автозапуском — в `dzen/SETUP-telegram.md`.
 
 ## Что работает без ключей, а что нет
 

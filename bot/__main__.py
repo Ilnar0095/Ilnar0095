@@ -67,6 +67,39 @@ async def selftest() -> int:
     return 0 if prompt else 1
 
 
+def check_token() -> int:
+    """Проверка токена до запуска: getMe должен вернуть имя вашего бота."""
+    import asyncio
+
+    import aiohttp
+
+    cfg = Config.from_env()
+    if not cfg.token:
+        print("❌ TELEGRAM_BOT_TOKEN пуст. Скопируйте строку из @BotFather в bot/.env")
+        return 2
+
+    async def probe() -> tuple[int, str]:
+        url = f"https://api.telegram.org/bot{cfg.token}/getMe"
+        try:
+            async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=25)) as s:
+                async with s.get(url) as r:
+                    return r.status, await r.text()
+        except Exception as exc:
+            return -1, f"нет доступа к Telegram API: {exc}"
+
+    status, raw = asyncio.run(probe())
+    if status == 200:
+        import json
+        r = json.loads(raw).get("result", {})
+        print(f"✅ токен рабочий. Бот: «{r.get('first_name')}» @{r.get('username')}")
+        print("Теперь напишите ему /start и запускайте:  python -m bot")
+        return 0
+    print(f"❌ Telegram ответил {status}: {raw[:300]}")
+    print("Обычно это значит: токен скопирован не полностью (нужны обе части через двоеточие) "
+          "или бота пересоздали — возьмите новый через /revoke.")
+    return 1
+
+
 def run() -> int:
     from aiogram import Bot, Dispatcher
     from aiogram.client.default import DefaultBotProperties
@@ -102,4 +135,6 @@ def run() -> int:
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
         sys.exit(asyncio.run(selftest()))
+    if "--check-token" in sys.argv:
+        sys.exit(check_token())
     sys.exit(run())
