@@ -30,6 +30,13 @@ if not exist ".venv\Scripts\python.exe" (
   echo.
 )
 
+echo Yesli vmesto raboty bota vy vidite kursor ">>>" - znachit Windows otkryl
+echo etot fayl kak tekst vnutri Python, a ne zapustil ego. Zakroyte okno i
+echo zapuskayte cherez komandnuyu stroku: v provodnike otkroyte papku cookrate,
+echo kliknite po stroke adresa sverhu, napishite cmd, Enter, i vnizu pechataite:
+echo     py bot\install.py
+echo     .venv\Scripts\python.exe -m bot
+echo.
 echo [shag 2 iz 2] Zapuskayu bota. Okno derzhite otkrytym.
 echo Khotite proverit token:  %PY% -m bot --check-token
 ".venv\Scripts\python.exe" -m bot

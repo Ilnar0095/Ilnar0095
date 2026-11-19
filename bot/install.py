@@ -196,6 +196,13 @@ def main() -> int:
     args = p.parse_args()
 
     print("COOKRATE Bot — установка\n" + "─" * 46)
+    if "windowsapps" in str(sys.executable).lower():
+        say("  ⚠", "это Python из Microsoft Store. Он рабочий, но капризный: нет "
+                    "установщика py и доступ к папке WindowsApps ограничен.\n"
+                    "        Надёжнее поставить обычный Python с python.org/downloads "
+                    "(галочка «Add python.exe to PATH»)\n"
+                    "        и перезапустить установку им. Текущий прогон продолжу.")
+
     for fn in (check_python, check_repo, check_ffmpeg):
         good, msg = fn()
         say(OK if good else FAIL, msg)
