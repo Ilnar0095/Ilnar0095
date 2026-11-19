@@ -193,6 +193,7 @@ def main() -> int:
     p.add_argument("--no-prompt", action="store_true", help="не задавать вопросов (для CI)")
     p.add_argument("--force-env", action="store_true", help="перезаписать bot/.env")
     p.add_argument("--docker", action="store_true", help="показать команды Docker и выйти")
+    p.add_argument("--no-launch", action="store_true", help="не запускать бота после установки")
     args = p.parse_args()
 
     print("COOKRATE Bot — установка\n" + "─" * 46)
@@ -238,10 +239,21 @@ def main() -> int:
         return 0
 
     ok = selftest(python)
-    finish(python if not args.no_venv else None)
     if not ok:
         print("\n⚠️  самотест не прошёл — смотрите вывод выше, обычно это путь к репозиторию")
+        finish(python if not args.no_venv else None)
         return 1
+
+    if not args.no_launch and sys.stdin.isatty():
+        ans = input("\nЗапустить бота прямо сейчас? [Д/н] ").strip().lower()
+        if ans in ("", "д", "d", "y", "yes", "да"):
+            print("Запускаю. Окно держите открытым: пока оно открыто, бот отвечает.")
+            print("Остановить — Ctrl+C. Команда повтора: .venv\\Scripts\\python.exe -m bot\n")
+            env = dict(os.environ, COOKRATE_REPO=str(REPO), PYTHONUNBUFFERED="1")
+            exe = str(python) if not args.no_venv else sys.executable
+            return subprocess.call([exe, "-m", "bot"], cwd=str(REPO), env=env)
+
+    finish(python if not args.no_venv else None)
     return 0
 
 
